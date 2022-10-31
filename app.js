@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 // import router
 import { indexRouter } from "./src/routes/index.js";
 import { authRouter } from "./src/routes/auth.js"
+import { postRouter } from "./src/routes/post.js";
 
 
 dotenv.config()
@@ -30,6 +31,7 @@ app.use(express.json())
 // endpoint
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
+app.use('/post', postRouter)
 
 const port = process.env.PORT
 

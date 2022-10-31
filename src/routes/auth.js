@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.post('/signup', signup)
 router.post('/signin', signin)
-router.get('/get-profil/:id', authentication, getProfil)
+router.get('/get-profil/:_id', authentication, getProfil)
 
 
 

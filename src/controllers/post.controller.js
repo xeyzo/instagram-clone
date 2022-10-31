@@ -1,8 +1,25 @@
 import Post from "../models/post.model.js";
 
 
+
+export const allPost = (req,res) => {
+
+
+    Post.find()
+    .then(posts => {
+
+        console.log(posts)
+        res.send({
+            message:"Success get all data post",
+            data:posts
+        }).status(200)
+    }).catch(err => {
+        console.log(err)
+    })
+}
+
 export const createPost = (req, res) => {
-    const { title, body } = req.body;
+    const { title, body, photo } = req.body;
 
     if(!title || !body ){
         return res.send({
@@ -10,10 +27,12 @@ export const createPost = (req, res) => {
         }).status(401)
     }
 
+    req.user.password = undefined
     const post = new Post({
         title,
         body,
-        postedBy:req.user.name
+        photo,
+        postedBy:req.user
     })
 
     post.save()

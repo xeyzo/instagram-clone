@@ -78,6 +78,7 @@ export const signin = (req, res) => {
 export const getProfil =  (req, res) => { 
     User.find({_id: req.params.id})
     .then(data => {
+        console.log(req.user)
         res.send({
             message:"get profil success",
             data:data
