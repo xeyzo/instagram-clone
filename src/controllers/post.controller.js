@@ -4,11 +4,9 @@ import Post from "../models/post.model.js";
 
 export const allPost = (req,res) => {
 
-
     Post.find()
+    .populate('postedBy',"_id name")
     .then(posts => {
-
-        console.log(posts)
         res.send({
             message:"Success get all data post",
             data:posts
@@ -45,4 +43,17 @@ export const createPost = (req, res) => {
         res.send({message : err}).status(401)
     })
 
+}
+
+export const mypost = (req,res) => {
+    Post.find({postedBy:req.user._id})
+    .populate('postedBy', '_id name')
+    .then(postme => {
+        res.send({
+            message:"all my post",
+            data:postme
+        }).status(200)
+    }).catch(err =>{
+        console.log(err)
+    })
 }
