@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import mongoose from "mongoose";
+import cors from "cors";
 
 // import router
 import { indexRouter } from "./src/routes/index.js";
@@ -24,6 +25,7 @@ db.once('open', () => console.log('Database Connected'));
 
 
 // dependencies
+app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
 
