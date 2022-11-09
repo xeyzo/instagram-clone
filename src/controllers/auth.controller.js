@@ -8,7 +8,7 @@ export const signup =  (req, res) => {
 
     if(!name || !email || !password){
         return res.json({
-            message:"Please add all fields"
+            messageError:"Please add all fields"
         }).status(400)
     }
 
@@ -16,7 +16,7 @@ export const signup =  (req, res) => {
     .then((user)=>{
          if(user){
             return res.json({
-                message:"User already exist"
+                messageError:"User already exist"
             }).status(400)
          }
          bcrypt.hash(password, 12)
@@ -33,7 +33,7 @@ export const signup =  (req, res) => {
                 }).status(200)
              }).catch(error => {
                 res.json({
-                    message:"User failed save",
+                    messageError:"User failed save",
                     detailError: error
                 })
              })
@@ -63,8 +63,10 @@ export const signin = (req, res) => {
         .then(match=>{
             if(match){
                 const token = jwt.sign({email:user.email, password:user.password},process.env.JWT_SECRET_KEY)
+                const {_id,email,name} = user
                 res.send({
-                    token:token
+                    token:token,
+                    user:{_id, email, name}
                 })
             }else{
                 return res.send({message:"login invalid"})

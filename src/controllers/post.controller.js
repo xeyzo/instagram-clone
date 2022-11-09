@@ -21,7 +21,7 @@ export const createPost = (req, res) => {
 
     if(!title || !body ){
         return res.send({
-            message:"Please add all fields"
+            messageError:"Please add all fields"
         }).status(401)
     }
 
