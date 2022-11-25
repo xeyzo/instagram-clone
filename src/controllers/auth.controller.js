@@ -48,7 +48,7 @@ export const signin = (req, res) => {
 
     if(!email || !password){
         return res.send({
-            errorMessage:"Please input email and password"
+            messageError:"Please input email and password"
         })
     }
 
@@ -56,7 +56,7 @@ export const signin = (req, res) => {
     .then(user =>{
         if(!user){
             return res.send({
-                errorMessage:"User not found"
+                messageError:"User not found"
             })
         }
         bcrypt.compare(password, user.password)
@@ -69,7 +69,7 @@ export const signin = (req, res) => {
                     user:{_id, email, name}
                 })
             }else{
-                return res.send({errorMessage:"login invalid"})
+                return res.send({messageError:"login invalid"})
             }
         }).catch(err =>{
             res.send({message:err})

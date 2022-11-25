@@ -19,7 +19,7 @@ export const allPost = (req,res) => {
 export const createPost = (req, res) => {
     const { title, body, photo } = req.body;
 
-    if(!title || !body ){
+    if(!title || !body || photo ){
         return res.send({
             messageError:"Please add all fields"
         }).status(401)
