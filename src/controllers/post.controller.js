@@ -18,7 +18,6 @@ export const allPost = (req,res) => {
 
 export const createPost = (req, res) => {
     const { title, body, photo} = req.body;
-    console.log(title, body, photo)
 
     if(!title || !body || !photo ){
         return res.json({
@@ -31,7 +30,7 @@ export const createPost = (req, res) => {
         title,
         body,
         photo,
-        postedBy:req.user
+        postedBy:req.user 
     })
 
     post.save()
