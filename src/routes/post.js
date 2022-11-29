@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get('/all-post',authentication, allPost);
 router.get('/my-post',authentication, mypost);
-router.post('/create-post', createPost);
+router.post('/create-post',authentication, createPost);
 
 export { router as postRouter }
